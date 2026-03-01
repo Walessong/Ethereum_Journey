@@ -7,5 +7,23 @@
     "realityCrash": "黑客利用漏洞窃取巨额资金，社区面临生死存亡。",
     "newNarrative": "硬分叉产生 Ethereum Classic，现实政治与人类共识压倒了纯粹的代码逻辑。",
     "historicalAssumption": "假若当年拒绝分叉，以太坊如今的生态版图将走向何方？"
+  },
+  {
+    "id": "defi-gas",
+    "year": "2020–2021",
+    "title": "DeFi 爆发与 Gas 危机",
+    "formerBelief": "所有的计算与交易理应在同一条主链上完成。",
+    "realityCrash": "真实金融需求导致网络严重拥堵，高昂的手续费彻底摧毁散户体验。",
+    "newNarrative": "承认主链物理极限，将扩容任务外包给 Layer 2 (如 Arbitrum, Optimism)，主链退居全球结算层。",
+    "historicalAssumption": "倘若死守 Layer 1 扩容，以太坊是否已被高性能公链淘汰？"
+  },
+  {
+    "id": "the-merge",
+    "year": "2022",
+    "title": "The Merge (世纪合并)",
+    "formerBelief": "算力去中心化是保障网络安全的唯一基石。",
+    "realityCrash": "能源环保压力剧增，算力事实上已被大型矿池垄断。",
+    "newNarrative": "从 PoW 转向 PoS，技术上取得史诗级成功，权力开始向大型质押实体集中，理念变得更为复杂。",
+    "historicalAssumption": "倘若继续维持 PoW 机制，以太坊能否承载当前的机构级资金体量？"
   }
 ]
