@@ -4,15 +4,19 @@
  */
 
 export interface ConflictEvent {
-  id: string;
   year: string;
   title: string;
   formerBelief: string;
   realityCrash: string;
   newNarrative: string;
-  historicalAssumption: string;
-   technicalCore: string;
-   metrics: string;
-   counterarguments: string;
-   glossary: Record<string, string>;
+  historicalAssumption?: string;
+  technicalCore?: string;
+  metrics?: string;
+  counterarguments?: string;
+  glossary?: Record<string, string>;
+  representativeProtocols?: string[];
+  whyItMatters?: string;
+  technicalChanges?: string;
+  controversy?: string;
+  id?: string;
 }

@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import siteData from "@/data/site.json";
-import type { SiteConfig } from "@/data/site";
 
-const site = siteData as SiteConfig;
+const TITLE = "以太坊是一部不断重写去中心化定义的历史";
+const SUBTITLE =
+  "2015 年上线时，Ethereum 被称为世界计算机。十年后，它更像一个全球结算层。这是工程现实对理想主义的长期重塑。";
 
 export default function HeroSection() {
   return (
@@ -29,8 +29,20 @@ export default function HeroSection() {
           ease: [0.25, 0.46, 0.45, 0.94],
         }}
       >
-        {site.hero.declaration}
+        {TITLE}
       </motion.h1>
+      <motion.p
+        className="mt-6 max-w-2xl text-center text-sm leading-relaxed text-zinc-600 md:mt-8 md:text-base"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.9,
+          delay: 0.4,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+      >
+        {SUBTITLE}
+      </motion.p>
     </section>
   );
 }

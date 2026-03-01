@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import siteData from "@/data/site.json";
 import type { ConflictEvent } from "@/data/conflicts";
 import type { SiteConfig } from "@/data/site";
+import HistoricalChoice from "@/components/HistoricalChoice";
 
 const site = siteData as SiteConfig;
 
@@ -23,11 +24,12 @@ function escapeRegExp(value: string): string {
 
 interface GlossaryTextProps {
   text: string;
-  glossary: Record<string, string>;
+  glossary?: Record<string, string>;
 }
 
 function GlossaryText({ text, glossary }: GlossaryTextProps) {
-  const terms = Object.keys(glossary);
+  const safeGlossary = glossary ?? {};
+  const terms = Object.keys(safeGlossary);
   if (!terms.length) return <>{text}</>;
 
   const pattern = new RegExp(`(${terms.map(escapeRegExp).join("|")})`, "g");
@@ -36,7 +38,7 @@ function GlossaryText({ text, glossary }: GlossaryTextProps) {
   return (
     <>
       {parts.map((part, index) => {
-        const definition = glossary[part];
+        const definition = safeGlossary[part];
 
         if (definition) {
           return (
@@ -165,14 +167,14 @@ export default function ConflictBlock({ conflict }: ConflictBlockProps) {
                     </h3>
                     <p className="mt-3 text-sm leading-relaxed text-zinc-700 md:text-base">
                       <GlossaryText
-                        text={conflict.technicalCore}
+                        text={conflict.technicalCore ?? ""}
                         glossary={conflict.glossary}
                       />
                     </p>
                   </div>
                   <div className="rounded-md border border-dashed border-zinc-300 bg-zinc-50 px-4 py-3 text-sm leading-relaxed text-zinc-700">
                     <GlossaryText
-                      text={conflict.metrics}
+                      text={conflict.metrics ?? ""}
                       glossary={conflict.glossary}
                     />
                   </div>
@@ -189,7 +191,7 @@ export default function ConflictBlock({ conflict }: ConflictBlockProps) {
                   </div>
                   <p>
                     <GlossaryText
-                      text={conflict.counterarguments}
+                      text={conflict.counterarguments ?? ""}
                       glossary={conflict.glossary}
                     />
                   </p>
@@ -206,11 +208,17 @@ export default function ConflictBlock({ conflict }: ConflictBlockProps) {
                   </h3>
                   <p className="mt-3 text-lg italic leading-relaxed text-zinc-600">
                     <GlossaryText
-                      text={conflict.historicalAssumption}
+                      text={conflict.historicalAssumption ?? ""}
                       glossary={conflict.glossary}
                     />
                   </p>
                 </motion.div>
+
+                <HistoricalChoice
+                  conflictTitle={conflict.title}
+                  resultSummary={conflict.newNarrative}
+                  impact={conflict.whyItMatters ?? ""}
+                />
               </div>
             </motion.div>
           )}
