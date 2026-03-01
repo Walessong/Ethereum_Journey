@@ -3,7 +3,7 @@
 import conflictsData from "@/data/conflicts.json";
 import type { ConflictEvent } from "@/data/conflicts";
 
-const conflicts = conflictsData as ConflictEvent[];
+const conflicts = conflictsData as unknown as ConflictEvent[];
 
 function getSummary(conflict: ConflictEvent) {
   return {
