@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import ConflictSection from "@/app/ConflictSection";
+import Timeline from "@/components/Timeline";
 import conflictsData from "@/data/conflicts.json";
 import type { ConflictEvent } from "@/data/conflicts";
 
@@ -12,6 +13,7 @@ export default function Home() {
       {conflicts.map((conflict) => (
         <ConflictSection key={conflict.id} conflict={conflict} />
       ))}
+      <Timeline />
     </main>
   );
 }

@@ -1,17 +1,90 @@
-/**
- * Vitalik 思想流变时间轴组件
- * 横向时间轴展示创始人思想演变
- */
+"use client";
+
+import { useRef, useState, useLayoutEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Noto_Serif_SC } from "next/font/google";
+import vitalikQuotesData from "@/data/vitalik_quotes.json";
+import type { VitalikQuote } from "@/data/vitalik_quotes";
+
+const notoSerif = Noto_Serif_SC({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+});
+
+const SCROLL_MULTIPLIER = 2.5;
+
+const quotes = vitalikQuotesData as VitalikQuote[];
 
 export default function Timeline() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [maxScroll, setMaxScroll] = useState(0);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (contentRef.current && typeof window !== "undefined") {
+        const scrollWidth = contentRef.current.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        setMaxScroll(Math.max(0, scrollWidth - viewportWidth));
+      }
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    const el = contentRef.current;
+    if (el) ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [quotes.length]);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, -maxScroll]);
+
   return (
-    <section className="px-6 py-24">
-      <h2 className="text-2xl font-light tracking-tight md:text-3xl">
-        Vitalik 思想流变
-      </h2>
-      <p className="mt-4 text-zinc-600">
-        梳理创始人从早期极客理想主义到后期「终局游戏」模块化路线的思想演变。
-      </p>
+    <section
+      ref={sectionRef}
+      style={{ height: `${SCROLL_MULTIPLIER * 100}vh` }}
+    >
+      <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-stone-50">
+        <div className="shrink-0 px-6 pt-16 md:px-12">
+          <h2 className="text-xl font-light tracking-tight text-zinc-800 md:text-2xl">
+            Vitalik 思想流变
+          </h2>
+          <p className="mt-2 text-sm text-zinc-500">
+            从极客理想主义到「终局游戏」模块化路线
+          </p>
+        </div>
+        <div className="flex-1 overflow-hidden px-6 md:px-12">
+          <motion.div
+            ref={contentRef}
+            style={{ x }}
+            className={`flex h-full items-center gap-8 pb-24 pt-8 ${notoSerif.className}`}
+          >
+            {quotes.map((item) => (
+              <article
+                key={item.id}
+                className="flex min-w-[280px] max-w-[320px] shrink-0 flex-col rounded-lg border border-stone-200/80 bg-white p-6 shadow-sm md:min-w-[340px] md:max-w-[380px] md:p-8"
+              >
+                <span className="text-xs font-medium tracking-widest text-stone-400">
+                  {item.year}
+                </span>
+                <blockquote className="mt-4 text-lg font-medium leading-relaxed text-zinc-800 md:text-xl">
+                  「{item.quote}」
+                </blockquote>
+                <p className="mt-4 text-sm leading-relaxed text-stone-500">
+                  {item.context}
+                </p>
+              </article>
+            ))}
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
