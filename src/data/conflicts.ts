@@ -11,4 +11,8 @@ export interface ConflictEvent {
   realityCrash: string;
   newNarrative: string;
   historicalAssumption: string;
+   technicalCore: string;
+   metrics: string;
+   counterarguments: string;
+   glossary: Record<string, string>;
 }

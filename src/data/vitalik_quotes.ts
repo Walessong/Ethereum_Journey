@@ -9,4 +9,5 @@ export interface VitalikQuote {
   quote: string;
   context: string;
   source?: string;
+  sourceLink: string;
 }

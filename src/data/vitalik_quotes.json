@@ -4,34 +4,39 @@
     "year": "2014",
     "quote": "以太坊的目标是成为一台世界计算机——一个去中心化的平台，任何人都可以在其上构建不可阻挡的应用程序。",
     "context": "白皮书发布前后，强调「世界计算机」愿景与智能合约的通用性。",
-    "source": "Ethereum Whitepaper"
+    "source": "Ethereum Whitepaper",
+    "sourceLink": "https://ethereum.org/en/whitepaper/"
   },
   {
     "id": "v2",
     "year": "2016",
     "quote": "区块链的价值不在于它能让一切去中心化，而在于它能在保持安全的前提下，让某些关键事物去中心化。",
     "context": "The DAO 事件后，开始反思「代码即法律」的绝对性，转向更务实的去中心化观。",
-    "source": "公开访谈"
+    "source": "公开访谈",
+    "sourceLink": "https://vitalik.ca"
   },
   {
     "id": "v3",
     "year": "2020",
     "quote": "Rollups 是以太坊扩容的未来。在可预见的未来，所有扩容都将通过 Rollups 实现。",
     "context": "DeFi 爆发与 Gas 危机中，明确将 Layer 2 视为主链扩容的核心路径。",
-    "source": "A Rollup-Centric Roadmap"
+    "source": "A Rollup-Centric Roadmap",
+    "sourceLink": "https://vitalik.ca/general/2021/01/05/rollup.html"
   },
   {
     "id": "v4",
     "year": "2021",
     "quote": "即使区块生产变得中心化，我们仍可通过数据可用性采样与欺诈证明，实现去中心化的验证与抗审查。",
     "context": "提出「终局游戏 (Endgame)」：接受区块生产的现实集中，转而保证验证层的去中心化。",
-    "source": "Endgame"
+    "source": "Endgame",
+    "sourceLink": "https://vitalik.ca/general/2021/12/06/endgame.html"
   },
   {
     "id": "v5",
     "year": "2022",
     "quote": "以太坊正在从「世界计算机」演变为「全球结算层」。这不是退却，而是对自身定位的成熟认知。",
     "context": "The Merge 完成后，总结从极客理想主义到模块化架构的系统级转变。",
-    "source": "公开演讲"
+    "source": "公开演讲",
+    "sourceLink": "https://vitalik.ca"
   }
 ]
