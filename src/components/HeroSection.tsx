@@ -1,21 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Noto_Serif_SC } from "next/font/google";
+import siteData from "@/data/site.json";
+import type { SiteConfig } from "@/data/site";
 
-const notoSerif = Noto_Serif_SC({
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-});
-
-const DECLARATION =
-  "以太坊从来未曾单纯升级代码，它在不断重写去中心化的定义";
+const site = siteData as SiteConfig;
 
 export default function HeroSection() {
   return (
     <section
-      className={`relative flex min-h-screen flex-col items-center justify-center px-6 py-24 ${notoSerif.className}`}
+      className="relative flex min-h-screen flex-col items-center justify-center px-6 py-24"
       style={{
+        fontFamily: "var(--font-noto-serif-sc), serif",
         backgroundColor: "#fafafa",
         backgroundImage: `
           linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
@@ -33,7 +29,7 @@ export default function HeroSection() {
           ease: [0.25, 0.46, 0.45, 0.94],
         }}
       >
-        {DECLARATION}
+        {site.hero.declaration}
       </motion.h1>
     </section>
   );

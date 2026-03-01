@@ -2,18 +2,14 @@
 
 import { useRef, useState, useLayoutEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Noto_Serif_SC } from "next/font/google";
 import vitalikQuotesData from "@/data/vitalik_quotes.json";
+import siteData from "@/data/site.json";
 import type { VitalikQuote } from "@/data/vitalik_quotes";
+import type { SiteConfig } from "@/data/site";
 
-const notoSerif = Noto_Serif_SC({
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-});
-
-const SCROLL_MULTIPLIER = 2.5;
-
+const site = siteData as SiteConfig;
 const quotes = vitalikQuotesData as VitalikQuote[];
+const SCROLL_MULTIPLIER = 2.5;
 
 export default function Timeline() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -54,17 +50,15 @@ export default function Timeline() {
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-stone-50">
         <div className="shrink-0 px-6 pt-16 md:px-12">
           <h2 className="text-xl font-light tracking-tight text-zinc-800 md:text-2xl">
-            Vitalik 思想流变
+            {site.timeline.title}
           </h2>
-          <p className="mt-2 text-sm text-zinc-500">
-            从极客理想主义到「终局游戏」模块化路线
-          </p>
+          <p className="mt-2 text-sm text-zinc-500">{site.timeline.subtitle}</p>
         </div>
         <div className="flex-1 overflow-hidden px-6 md:px-12">
           <motion.div
             ref={contentRef}
-            style={{ x }}
-            className={`flex h-full items-center gap-8 pb-24 pt-8 ${notoSerif.className}`}
+            style={{ x, fontFamily: "var(--font-noto-serif-sc), serif" }}
+            className="flex h-full items-center gap-8 pb-24 pt-8"
           >
             {quotes.map((item) => (
               <article
